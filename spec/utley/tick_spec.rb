@@ -14,7 +14,7 @@ describe Utley::Tick do
 
       describe "and the check resulted in one event" do
 
-        let(:events) { Object.new }
+        let(:events) { [Object.new] }
 
         let(:check_response) do
           r = Object.new
@@ -28,6 +28,27 @@ describe Utley::Tick do
 
         it "should call publish the events from the check" do
           Utley.expects(:publish).with events
+          Utley::Tick.tock
+        end
+
+      end
+
+      describe "and the check resulted in no events" do
+
+        let(:events) { [] }
+
+        let(:check_response) do
+          r = Object.new
+          r.stubs(:events).returns events
+          r
+        end
+
+        before do
+          agent.stubs(:check).returns check_response
+        end
+
+        it "should not call publish" do
+          Utley.expects(:publish).never
           Utley::Tick.tock
         end
 

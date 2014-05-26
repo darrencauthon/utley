@@ -1,7 +1,8 @@
 module Utley
   module Tick
     def self.tock
-      Utley.publish Utley::Agent.pending.first.check.events
+      events = Utley::Agent.pending.first.check.events
+      Utley.publish events if events.count > 0
     end
   end
 end
