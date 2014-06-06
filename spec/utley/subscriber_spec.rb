@@ -89,4 +89,25 @@ describe Utley::Subscriber do
 
   end
 
+  describe "registry" do
+
+    it "should exist" do
+      Utley::Subscriber.registry
+    end
+
+    it "should default to an empty array" do
+      Utley::Subscriber.instance_eval { @registry = nil }
+      Utley::Subscriber.registry.count.must_equal 0
+      Utley::Subscriber.registry.is_a?(Array).must_equal true
+    end
+
+    it "should allow me to add hashes to it" do
+      record = {}
+      Utley::Subscriber.registry << record
+      Utley::Subscriber.registry.count.must_equal 1
+      Utley::Subscriber.registry[0].must_be_same_as record
+    end
+
+  end
+
 end

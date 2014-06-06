@@ -7,6 +7,11 @@ module Utley
     end
 
     class << self
+
+      def registry
+        @registry ||= []
+      end
+
       private
 
       def build_subscribers_from registry_entries
@@ -17,6 +22,7 @@ module Utley
         registry.select { |x| x[:publisher_id] == publisher.id &&
                               x[:event_id]     == event.id }
       end
+
     end
 
   end
