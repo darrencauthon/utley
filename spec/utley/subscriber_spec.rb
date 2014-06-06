@@ -1,5 +1,8 @@
 require_relative '../spec_helper'
 
+class TestAAgent; end
+class TestBAgent; end
+
 describe Utley::Subscriber do
 
   describe "for" do
@@ -106,6 +109,26 @@ describe Utley::Subscriber do
       Utley::Subscriber.registry << record
       Utley::Subscriber.registry.count.must_equal 1
       Utley::Subscriber.registry[0].must_be_same_as record
+    end
+
+  end
+
+  describe "build_from" do
+
+    it "should create TestA if the type is test_a" do
+
+      result = Utley::Subscriber.build_from( { agent_type: 'test_a' } )
+
+      result.is_a?(TestAAgent).must_equal true
+
+    end
+
+    it "should create TestB if the type is test_b" do
+
+      result = Utley::Subscriber.build_from( { agent_type: 'test_b' } )
+
+      result.is_a?(TestBAgent).must_equal true
+
     end
 
   end

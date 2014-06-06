@@ -1,9 +1,15 @@
+require 'active_support/inflector'
+
 module Utley
 
   module Subscriber
 
     def self.for publisher, event
       build_subscribers_from registry_entries_for(publisher, event)
+    end
+
+    def self.build_from registry_record
+      "#{registry_record[:agent_type]}_agent".camelize.constantize.new
     end
 
     class << self
