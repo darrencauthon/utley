@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
-class TestAAgent; end
-class TestBAgent; end
+class TestAAgent < Utley::Agent; end
+class TestBAgent < Utley::Agent; end
 
 describe Utley::Subscriber do
 
@@ -129,6 +129,14 @@ describe Utley::Subscriber do
 
       result.is_a?(TestBAgent).must_equal true
 
+    end
+
+    describe "setting data" do
+      it "should set the data when creating the agents" do
+        data = { agent_type: 'test_b' }
+        agent = Utley::Subscriber.build_from data
+        agent.data.must_be_same_as data
+      end
     end
 
   end

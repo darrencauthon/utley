@@ -9,7 +9,7 @@ module Utley
     end
 
     def self.build_from registry_record
-      "#{registry_record[:agent_type]}_agent".camelize.constantize.new
+      "#{registry_record[:agent_type]}_agent".camelize.constantize.new registry_record
     end
 
     class << self
