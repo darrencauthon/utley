@@ -6,4 +6,11 @@ describe Utley::Agent do
     true.must_equal true  
   end
 
+  describe "receive" do
+    it "should exist" do
+      agent = Utley::Agent.new
+      agent.receive nil
+    end
+  end
+
 end
