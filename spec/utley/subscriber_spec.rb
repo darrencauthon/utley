@@ -35,9 +35,9 @@ describe Utley::Subscriber do
             Utley::Subscriber.stubs(:registry).returns registry
             Utley::Subscriber.stubs(:build_from).with(our_registry_item).returns subscriber
 
-            result = Utley::Subscriber.for publisher, event
+            results = Utley::Subscriber.for publisher, event
 
-            result.must_be_same_as subscriber
+            results.first.must_be_same_as subscriber
           end
 
         end
