@@ -4,5 +4,7 @@ module Utley
     def initialize data = {}
       @data = data
     end
+
+    # needs: receive(event)
   end
 end
